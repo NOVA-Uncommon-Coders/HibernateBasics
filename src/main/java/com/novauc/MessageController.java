@@ -20,4 +20,20 @@ public class MessageController {
         model.addAttribute("messages", messageArrayList);
         return "index";
     }
+
+    @RequestMapping(path = "/add-message", method = RequestMethod.POST)
+    public String addMessage(String author, Integer user_id, String text, String location, Integer time_hours) {
+        Message message = new Message(author, user_id.intValue(), text, location, time_hours.intValue());
+        messages.save(message);
+        return "redirect:/";
+    }
+
+    @RequestMapping(path = "/edit-message", method = RequestMethod.POST)
+    public String editMessage(int id, String editor) {
+        Message message = messages.findOne(id);
+        message.setText(editor);
+        messages.save(message);
+        return "redirect:/";
+    }
+
 }

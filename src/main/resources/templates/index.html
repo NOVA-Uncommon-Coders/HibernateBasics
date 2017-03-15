@@ -1,10 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html>
 <body>
+<form action="/add-message" method="post">
+    <input type="text" placeholder="your name" name="author">
+    <!--{{#user_id}} <input type="hidden" value="{{user_id}}" name="messageUserId"> {{/user_id}}-->
+    <input type="number" placeholder="your user_id" name="user_id">
+    <input type="text" placeholder="your thoughts" name="text">
+    <input type="text" placeholder="your location" name="location">
+    <input type="number" placeholder="what hour is it? (24hr)" name="time_hours">
+    <button type="submit">Submit</button>
+</form>
 
+<ol>
+    {{#messages}}
+    <li>
+        {{author}} {{user_id}} {{text}} {{location}} {{time_hours}}
+        <form action="/edit-message" method="post">
+            <input type="text" placeholder="change your thoughts" name="editor">
+            <input type="hidden" value="{{id}}" name="id">
+            <button type="submit">Edit</button>
+        </form>
+    </li>
+    {{/messages}}
+</ol>
 </body>
 </html>
