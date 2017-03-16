@@ -3,28 +3,36 @@ package com.novauc;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "credenza")
+@Table(name = "message")
 public class Message {
     @Id
     @GeneratedValue
-    int id;
+    private int id;
 
     @Column(nullable = false)
-    String author;
+    private String author;
 
     @Column(nullable = false)
-    int user_id;
+    private int user_id;
 
     @Column(nullable = false)
-    String text;
+    private String text;
 
     @Column(nullable = false)
-    String location;
+    private String location;
 
     @Column(nullable = false)
-    int time_hours;
+    private int time_hours;
 
     public Message(String author, int user_id, String text, String location, int time_hours) {
+        this.author = author;
+        this.user_id = user_id;
+        this.text = text;
+        this.location = location;
+        this.time_hours = time_hours;
+    }
+
+    public Message(String author, String text, String location, int time_hours) {
         this.author = author;
         this.user_id = user_id;
         this.text = text;

@@ -1,8 +1,23 @@
 <html>
 <body>
+
+{{#userName}}Hello, {{.}}!{{/userName}}
+
+{{^userName}}
+<form action="/login" method="post">
+    <input type="text" placeholder="Enter your name" name="userName"/>
+    <button type="submit">Login</button>
+</form>
+{{/userName}}
+
+{{#userName}}
+<form action="/logout" method="post">
+    <button type="submit">Logout</button>
+</form>
+
 <form action="/add-message" method="post">
     <input type="text" placeholder="your name" name="author">
-    <!--{{#user_id}} <input type="hidden" value="{{user_id}}" name="messageUserId"> {{/user_id}}-->
+    <!--{{#user_id}} <input type="hidden" value="{{user_id}}" name="user_id"> {{/user_id}}-->
     <input type="number" placeholder="your user_id" name="user_id">
     <input type="text" placeholder="your thoughts" name="text">
     <input type="text" placeholder="your location" name="location">
@@ -26,5 +41,7 @@
     </li>
     {{/messages}}
 </ol>
+{{/userName}}
+
 </body>
 </html>
