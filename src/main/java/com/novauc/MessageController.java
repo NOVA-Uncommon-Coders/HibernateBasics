@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 @Controller
 public class MessageController {
@@ -33,6 +32,12 @@ public class MessageController {
         Message message = messages.findOne(id);
         message.setText(editor);
         messages.save(message);
+        return "redirect:/";
+    }
+
+    @RequestMapping(path = "/delete-message", method = RequestMethod.POST)
+    public String deleteMessage(int id) {
+        messages.delete(id);
         return "redirect:/";
     }
 

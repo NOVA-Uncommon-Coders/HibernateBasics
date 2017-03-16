@@ -19,6 +19,10 @@
             <input type="hidden" value="{{id}}" name="id">
             <button type="submit">Edit</button>
         </form>
+        <form action="/delete-message" method="post">
+            <input type="hidden" value="{{id}}" name="id">
+            <button type="submit">Delete</button>
+        </form>
     </li>
     {{/messages}}
 </ol>
