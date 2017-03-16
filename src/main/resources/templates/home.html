@@ -1,0 +1,32 @@
+<html>
+
+<body>
+
+<form action="/add-message" method="post">
+
+<h4>Write your message here</h4>
+    <h5>Message subject</h5>
+    <input type="text" placeholder="" name="messageTitle">
+    <h5>Message body</h5>
+    <input type="text" placeholder="" name="messageText">
+    <button type="submit">Submit</button>
+</form>
+
+
+<ol>
+    {{#messages}}
+    <li>{{title}} {{text}}
+        <form action="/edit-message"  method="post">
+            <input type="int" value={{id}} name="id"/>
+            <input type="text" value={{title}} name="title"/>
+            <input type="text" value={{text}} name="text"/>
+            <button type="submit">Edit Message</button>
+        </form>
+
+    </li>
+    {{/messages}}
+</ol>
+
+
+</body>
+</html>
