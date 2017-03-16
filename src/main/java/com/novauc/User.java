@@ -3,7 +3,7 @@ package com.novauc;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Users")
+@Table(name = "users")
 public class User {
 
 

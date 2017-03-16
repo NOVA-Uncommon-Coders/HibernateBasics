@@ -24,7 +24,7 @@ public class HibernateController {
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String index(Model model, HttpSession session) {
         List<Message> messageList = (List<Message>) messages.findAll();
-        model.addAttribute("user", session.getAttribute("user"));
+        model.addAttribute("currentUser",  users.findFirstByUserName((String) session.getAttribute("userName")));
         model.addAttribute("messages", messageList);
         return "home";
     }
@@ -35,14 +35,13 @@ public class HibernateController {
 
     @RequestMapping(path ="/login", method = RequestMethod.POST)
     public String login(HttpSession session, String userName){
-            User user = null;
-            
+            User user = users.findFirstByUserName(userName);
             if (user == null){
                 user = new User(userName);
                 users.save(user);
             }
 
-            session.setAttribute("user", user);
+            session.setAttribute("userName",userName );
             return "redirect:/";
     }
     @RequestMapping(path ="/logout", method = RequestMethod.POST)
@@ -52,8 +51,7 @@ public class HibernateController {
     }
     @RequestMapping(path ="/add-message", method = RequestMethod.POST)
     public String addMessage(HttpSession session, String message){
-        User user = (User)session.getAttribute("user");
-        messages.save(new Message(message, user.getId()));
+        messages.save(new Message(message, users.findFirstByUserName((String) session.getAttribute("userName"))));
         return "redirect:/";
     }
     @RequestMapping(path ="/edit-message", method = RequestMethod.POST)

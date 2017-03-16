@@ -15,16 +15,12 @@ public class Message {
         @Column(nullable = false)
         private String message;
 
-        @Column(nullable = false)
-        private int userId;
-
 
         public Message() {
         }
 
-        public Message(String message, int userId, User user) {
+        public Message(String message,  User user) {
             this.message = message;
-            this.userId = userId;
             this.user = user;
         }
 
@@ -44,11 +40,11 @@ public class Message {
                 this.message = message;
         }
 
-        public int getUserId() {
-                return userId;
+        public User getUser() {
+                return user;
         }
 
-        public void setUserId(int userId) {
-                this.userId = userId;
+        public void setUser(User user) {
+                this.user = user;
         }
 }
