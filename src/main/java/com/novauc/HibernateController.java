@@ -23,7 +23,7 @@ public class HibernateController {
 
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String index(Model model, HttpSession session) {
-        List<Message> messageList = (List<Message>) messages.findAll();
+        List<Message> messageList = (List<Message>) messages.findAllByOrderByIdAsc();
         model.addAttribute("currentUser",  users.findFirstByUserName((String) session.getAttribute("userName")));
         model.addAttribute("messages", messageList);
         return "home";
@@ -55,10 +55,15 @@ public class HibernateController {
         return "redirect:/";
     }
     @RequestMapping(path ="/edit-message", method = RequestMethod.POST)
-    public String updateMessage(HttpSession session, int id, String message){
+    public String updateMessage(int id, String message){
         Message messageObj = messages.findOne(id);
         messageObj.setMessage(message);
         messages.save(messageObj);
+        return "redirect:/";
+    }
+    @RequestMapping(path="/delete-message", method = RequestMethod.POST)
+    public String deleteMessage(int id){
+        messages.delete(id);
         return "redirect:/";
     }
 }
