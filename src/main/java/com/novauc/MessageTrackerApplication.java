@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HibernateBasicsApplication {
+public class MessageTrackerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HibernateBasicsApplication.class, args);
+		SpringApplication.run(MessageTrackerApplication.class, args);
 	}
 }
