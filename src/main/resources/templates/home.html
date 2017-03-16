@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>rettiwT home</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    </head>
+    <body>
+        {{^currentUser}}
+            <form action="/login" method="post">
+                <input type="text" placeholder="user:" name="userName">
+                <button type="submit" class="btn btn-success">Login</button>
+            </form>
+        {{/currentUser}}
+
+        {{#currentUser}}
+            <div style="text-align:center;" >
+                <h1>Welcome, <strong style="color:#3dbd6e;">{{userName}}</strong></h1>
+                <form action="/logout" method="post">
+                    <button type="submit" class="btn btn-danger">Logout</button>
+                </form>
+            </div>
+            <form action="/add-message" method="post">
+                <input type="text" placeholder="Message: " name="message"/>
+                <button type="submit" class="btn btn-success">Add Message</button>
+            </form>
+
+            <table class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th>Author Name</th>
+                        <th>Message</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#messages}}
+                        <tr>
+                            <td>{{#user}}{{userName}}{{/user}}</td>
+                            <td>{{message}}</td>
+                            <td>
+                                <form action="/edit-message" method="post">
+                                    <input type="hidden" value="{{id}}" name="id">
+                                    <input type="text" value="{{message}}" name="message">
+                                    <button type="submit" class="btn btn-warning">Edit</button>
+                                </form>
+                            </td>
+                            <td>
+                                <form action="/delete-message" method="post">
+                                    <input type="hidden" value="{{id}}" name="id">
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {{/messages}}
+                </tbody>
+            </table>
+        {{/currentUser}}
+    </body>
+</html>
