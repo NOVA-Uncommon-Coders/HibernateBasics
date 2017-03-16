@@ -1,0 +1,22 @@
+<html>
+<body>
+
+<form action="/add-messages" method="post">
+    <input type="text" placeholder="Message" name="messageName"/>
+    <button type="submit">Login</button>
+
+
+</form>
+<ol>
+{{#messages}}
+<li>{{name}}
+    <form action="/edit-messages" method="post">
+        <input type="text" placeholder="Message" name="editName"/>
+        <input type="hidden" value={{id}} name="idName"/>
+        <button type="submit">Login</button>
+    </form>
+</li>
+{{/messages}}
+</ol>
+</body>
+</html>
