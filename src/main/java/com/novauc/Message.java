@@ -5,6 +5,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "messages")
 public class Message {
+        @ManyToOne
+        User user;
 
         @Id
         @GeneratedValue
@@ -20,9 +22,10 @@ public class Message {
         public Message() {
         }
 
-        public Message(String message, int userId) {
+        public Message(String message, int userId, User user) {
             this.message = message;
             this.userId = userId;
+            this.user = user;
         }
 
         public int getId() {

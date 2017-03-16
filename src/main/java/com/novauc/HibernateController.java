@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -18,30 +17,15 @@ public class HibernateController {
     @Autowired
     UserRepository users;
 
+    /***********************
+     * GET routes
+     ***********************/
+
     @RequestMapping(path = "/", method = RequestMethod.GET)
     public String index(Model model, HttpSession session) {
         List<Message> messageList = (List<Message>) messages.findAll();
         model.addAttribute("user", session.getAttribute("user"));
         model.addAttribute("messages", messageList);
-        return "home";
-    }
-    /*         */
-    /***********************
-     * GET routes
-     ***********************/
-
-    @RequestMapping(path = "/register", method = RequestMethod.GET)
-    public String register(Model model, HttpSession session) {
-        User user =(User) session.getAttribute("user");
-        if (user != null){
-            model.addAttribute("user", user);
-            return "home";
-        }
-        return "register";
-    }
-    @RequestMapping(path="/logout", method=RequestMethod.GET)
-    public String logout(Model model, HttpSession session){
-        session.invalidate();
         return "home";
     }
 
@@ -50,17 +34,14 @@ public class HibernateController {
      ***********************/
 
     @RequestMapping(path ="/login", method = RequestMethod.POST)
-    public String login(HttpSession session, String userName, String password){
+    public String login(HttpSession session, String userName){
             User user = null;
-            for (User getUser:(ArrayList<User>) users.findAll()){
-                if (getUser.getUserName().equals(userName)){
-                    user = getUser;
-                }
-            }
+            
             if (user == null){
                 user = new User(userName);
+                users.save(user);
             }
-            users.save(user);
+
             session.setAttribute("user", user);
             return "redirect:/";
     }
@@ -82,7 +63,5 @@ public class HibernateController {
         messages.save(messageObj);
         return "redirect:/";
     }
-
-
 }
 
