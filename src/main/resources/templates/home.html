@@ -10,7 +10,7 @@
     {{#messages}}
     <li></li>
     <form action="/edit-message" method = "post">
-        {{text}
+        {{text}}
         <input type="text" placeholder="Update Message" name="editMessage"/>
         <input type="hidden" value="{{id}}" name="editMessage"/>
         <button type="submit">Edit</button>

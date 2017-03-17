@@ -1,5 +1,6 @@
 package com.novauc;
 
+import com.sun.javafx.sg.prism.NGShape;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,8 +35,9 @@ public class MessageController {
         return "redirect:/";
     }
         @RequestMapping(path ="/edit-message", method =RequestMethod.POST)
-        public String editMessage(int editMessage){
-        Message m = new Message(messages.findOne(1));
+        public String editMessage(String editmessage){
+        Message m = new Message() ;
+        messages.findOne(1);
         messages.save(m);
         return "redirect:/";
 
