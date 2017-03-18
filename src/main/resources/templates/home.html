@@ -1,0 +1,40 @@
+<html>
+<head>
+
+</head>
+<body>
+
+{{^user}}
+<form action="/login" method="post">
+    <input type="text" placeholder="Username" name="userName" required/>
+    <input type="password" placeholder="Password" name="password" required/>
+    <button type="submit">Login</button>
+</form>
+{{/user}}
+
+{{#user}}
+Welcome, {{name}}!
+<form action="/logout" method="post">
+    <button type="submit">Logout</button>
+</form>
+<br><br>
+
+<br><br>
+
+
+<form action="/add-message" method="post">
+    <input type="text" placeholder="Enter your Message" name="messageInput"/>
+
+    <button type="submit">Post It</button>
+</form>
+
+<ol>
+    {{#messagesOut}}
+        <li>{{message}}<form action="/delete-message" method="post"><input type="hidden" value="{{id}}" name="deleteID"/><button type="submit">Delete this post</button></form>
+                        <form action="/edit-message" method="post"><input type="hidden" value="{{id}}" name="editID"/><button type="submit">Edit this post</button></form></li>
+    {{/messageOut}}
+</ol>
+{{/user}}
+</body>
+</html>
+
