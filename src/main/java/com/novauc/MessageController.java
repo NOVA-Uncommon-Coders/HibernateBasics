@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,16 +30,17 @@ public class MessageController {
     }
 
     @RequestMapping(path = "/add-message", method = RequestMethod.POST)
-    public String addMessage(String messageText) {
-        Message message = new Message(messageText);
+    public String addMessage(HttpSession session, String text) {
+        Message message = new Message(text);
         messages.save(message);
         return "redirect:/";
     }
         @RequestMapping(path ="/edit-message", method =RequestMethod.POST)
-        public String editMessage(String editmessage){
-        Message m = new Message() ;
-        messages.findOne(1);
-        messages.save(m);
+        public String editMessage(Integer id,String text){
+       int l = Integer.valueOf(id);
+       Message m = messages.findOne(l);
+       m.setText(text);
+       messages.save(m);
         return "redirect:/";
 
         }
