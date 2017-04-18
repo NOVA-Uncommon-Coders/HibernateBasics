@@ -17,21 +17,61 @@ public class Message {
     String name;
 
     @Column(nullable = false)
-    String platform;
+    String messageStyle;
 
     @Column(nullable = false)
-    String genre;
+    String messageType;
 
     @Column(nullable = false)
-    int releaseYear;
+    int messageYear;
 
     public Message() {
     }
 
-    public Message(String name, String platform, String genre, int releaseYear) {
+    public Message(String name, String messageStyle, String messageType, int messageYear) {
         this.name = name;
-        this.platform = platform;
-        this.genre = genre;
-        this.releaseYear = releaseYear;
+        this.messageStyle = messageStyle;
+        this.messageType = messageType;
+        this.messageYear = messageYear;
         }
+
+    public int getId() {
+        return id;
     }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getMessageStyle() {
+        return messageStyle;
+    }
+
+    public void setMessageStyle(String messageStyle) {
+        this.messageStyle = messageStyle;
+    }
+
+    public String getMessageType() {
+        return messageType;
+    }
+
+    public void setMessageType(String messageType) {
+        this.messageType = messageType;
+    }
+
+    public int getMessageYear() {
+        return messageYear;
+    }
+
+    public void setMessageYear(int messageYear) {
+        this.messageYear = messageYear;
+    }
+}
