@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<body>
+<form action="/add-message" method="post">
+    <input type="text" placeholder="Name" name="messageName"/>
+    <select name="messageStyle">
+        <option selected disabled>Style</option>
+        <option value="imessage">Imesage</option>
+        <option value="email">Email</option>
+        <option value="text">Text</option>
+        <option value="icq">ICQ</option>
+    </select>
+    <select name="messageType">
+        <option selected disabled>Type</option>
+        <option value="iphone">Iphone</option>
+        <option value="pc">PC</option>
+        <option value="smartphone">Smart Phone</option>
+        <option value="1995pc">1995 PC</option>
+    </select>
+    <input type="number" placeholder="Message Year" name="messageYear"/>
+    <button type="submit">Add Message</button>
+</form>
+
+
+
+
+
+
+<ol>
+    {{#messages}}
+    <li>{{name}} {{messageType}} {{messageType}} {{messageYear}}
+        <form action="/edit-message" method="post">
+            <input type="text" placeholder="Name" name="messageEdit"/>
+            <input type="hidden" value={{id}} name="id"/>
+            <button type="submit">Edit</button>
+
+        </form>
+    </li>
+    {{/messages}}
+</ol>
+</body>
+</html>
+
