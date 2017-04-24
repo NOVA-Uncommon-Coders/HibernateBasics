@@ -9,4 +9,5 @@ public class HibernateBasicsApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HibernateBasicsApplication.class, args);
 	}
+
 }
